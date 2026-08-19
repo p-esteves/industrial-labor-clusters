@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Environments
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Pytest / Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+portable_*.log
+
+# Spark & Hadoop local runtime
+spark-warehouse/
+metastore_db/
+derby.log
+hadoop/
+java_portable/
+
+# Pyvis local lib dependencies
+lib/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp

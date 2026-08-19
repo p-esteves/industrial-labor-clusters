@@ -1,0 +1,13 @@
+pyspark==3.5.3
+pandas
+numpy<2.0.0
+matplotlib
+seaborn
+plotly
+scikit-learn
+geopandas
+libpysal
+esda
+networkx
+pyvis
+pytest

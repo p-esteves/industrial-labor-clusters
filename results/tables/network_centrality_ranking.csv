@@ -1,0 +1,9 @@
+setor,categoria,cnae,betweenness_centrality,pagerank,closeness_centrality,in_degree_weight,out_degree_weight
+Química e Farmacêutica,Alta Tecnologia / Insumos,20-21,0.11904761904761904,0.08724967499512062,0.2857142857142857,0.95,1.9000000000000001
+Alimentos e Bebidas,Bens de Consumo,10-11,0.09523809523809523,0.22148459432736417,0.5714285714285714,1.15,0.2
+Automotiva e Equipamentos,Bens de Capital,29-30,0.09523809523809523,0.15347481153426834,0.5102040816326531,2.1,0.3
+Metalurgia,Insumos Básicos,24,0.023809523809523808,0.09324851837276008,0.2857142857142857,1.15,1.65
+Indústria Extrativa,Primário,05-09,0.0,0.04568013577575814,0.0,0.0,1.35
+Têxtil e Confecção,Bens de Consumo,13-14,0.0,0.2534595507151678,0.5,0.7,0.0
+Celulose e Papel,Insumos Básicos,17,0.0,0.0612931169649541,0.19047619047619047,0.4,0.75
+Máquinas e Aparelhos Elétricos,Bens de Capital,27-28,0.0,0.0841095973146067,0.19047619047619047,0.8,1.1

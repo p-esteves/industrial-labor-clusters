@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#377eb8", "font": {"color": "#000000", "face": "arial", "size": 14}, "id": "Ind\u00fastria Extrativa", "label": "Ind\u00fastria Extrativa", "shape": "dot", "size": 25.0, "title": "\u003cb\u003eSetor:\u003c/b\u003e Ind\u00fastria Extrativa\u003cbr\u003e\u003cb\u003eCNAE:\u003c/b\u003e 05-09\u003cbr\u003e\u003cb\u003eCategoria:\u003c/b\u003e Prim\u00e1rio\u003cbr\u003e\u003cb\u003eBetweenness Centrality:\u003c/b\u003e 0.0000\u003cbr\u003e\u003cb\u003eComunidade:\u003c/b\u003e Ecossistema 2"}, {"color": "#e41a1c", "font": {"color": "#000000", "face": "arial", "size": 14}, "id": "Alimentos e Bebidas", "label": "Alimentos e Bebidas", "shape": "dot", "size": 31.666666666666664, "title": "\u003cb\u003eSetor:\u003c/b\u003e Alimentos e Bebidas\u003cbr\u003e\u003cb\u003eCNAE:\u003c/b\u003e 10-11\u003cbr\u003e\u003cb\u003eCategoria:\u003c/b\u003e Bens de Consumo\u003cbr\u003e\u003cb\u003eBetweenness Centrality:\u003c/b\u003e 0.0952\u003cbr\u003e\u003cb\u003eComunidade:\u003c/b\u003e Ecossistema 1"}, {"color": "#e41a1c", "font": {"color": "#000000", "face": "arial", "size": 14}, "id": "T\u00eaxtil e Confec\u00e7\u00e3o", "label": "T\u00eaxtil e Confec\u00e7\u00e3o", "shape": "dot", "size": 25.0, "title": "\u003cb\u003eSetor:\u003c/b\u003e T\u00eaxtil e Confec\u00e7\u00e3o\u003cbr\u003e\u003cb\u003eCNAE:\u003c/b\u003e 13-14\u003cbr\u003e\u003cb\u003eCategoria:\u003c/b\u003e Bens de Consumo\u003cbr\u003e\u003cb\u003eBetweenness Centrality:\u003c/b\u003e 0.0000\u003cbr\u003e\u003cb\u003eComunidade:\u003c/b\u003e Ecossistema 1"}, {"color": "#e41a1c", "font": {"color": "#000000", "face": "arial", "size": 14}, "id": "Celulose e Papel", "label": "Celulose e Papel", "shape": "dot", "size": 25.0, "title": "\u003cb\u003eSetor:\u003c/b\u003e Celulose e Papel\u003cbr\u003e\u003cb\u003eCNAE:\u003c/b\u003e 17\u003cbr\u003e\u003cb\u003eCategoria:\u003c/b\u003e Insumos B\u00e1sicos\u003cbr\u003e\u003cb\u003eBetweenness Centrality:\u003c/b\u003e 0.0000\u003cbr\u003e\u003cb\u003eComunidade:\u003c/b\u003e Ecossistema 1"}, {"color": "#e41a1c", "font": {"color": "#000000", "face": "arial", "size": 14}, "id": "Qu\u00edmica e Farmac\u00eautica", "label": "Qu\u00edmica e Farmac\u00eautica", "shape": "dot", "size": 33.33333333333333, "title": "\u003cb\u003eSetor:\u003c/b\u003e Qu\u00edmica e Farmac\u00eautica\u003cbr\u003e\u003cb\u003eCNAE:\u003c/b\u003e 20-21\u003cbr\u003e\u003cb\u003eCategoria:\u003c/b\u003e Alta Tecnologia / Insumos\u003cbr\u003e\u003cb\u003eBetweenness Centrality:\u003c/b\u003e 0.1190\u003cbr\u003e\u003cb\u003eComunidade:\u003c/b\u003e Ecossistema 1"}, {"color": "#377eb8", "font": {"color": "#000000", "face": "arial", "size": 14}, "id": "Metalurgia", "label": "Metalurgia", "shape": "dot", "size": 26.666666666666668, "title": "\u003cb\u003eSetor:\u003c/b\u003e Metalurgia\u003cbr\u003e\u003cb\u003eCNAE:\u003c/b\u003e 24\u003cbr\u003e\u003cb\u003eCategoria:\u003c/b\u003e Insumos B\u00e1sicos\u003cbr\u003e\u003cb\u003eBetweenness Centrality:\u003c/b\u003e 0.0238\u003cbr\u003e\u003cb\u003eComunidade:\u003c/b\u003e Ecossistema 2"}, {"color": "#377eb8", "font": {"color": "#000000", "face": "arial", "size": 14}, "id": "Automotiva e Equipamentos", "label": "Automotiva e Equipamentos", "shape": "dot", "size": 31.666666666666664, "title": "\u003cb\u003eSetor:\u003c/b\u003e Automotiva e Equipamentos\u003cbr\u003e\u003cb\u003eCNAE:\u003c/b\u003e 29-30\u003cbr\u003e\u003cb\u003eCategoria:\u003c/b\u003e Bens de Capital\u003cbr\u003e\u003cb\u003eBetweenness Centrality:\u003c/b\u003e 0.0952\u003cbr\u003e\u003cb\u003eComunidade:\u003c/b\u003e Ecossistema 2"}, {"color": "#377eb8", "font": {"color": "#000000", "face": "arial", "size": 14}, "id": "M\u00e1quinas e Aparelhos El\u00e9tricos", "label": "M\u00e1quinas e Aparelhos El\u00e9tricos", "shape": "dot", "size": 25.0, "title": "\u003cb\u003eSetor:\u003c/b\u003e M\u00e1quinas e Aparelhos El\u00e9tricos\u003cbr\u003e\u003cb\u003eCNAE:\u003c/b\u003e 27-28\u003cbr\u003e\u003cb\u003eCategoria:\u003c/b\u003e Bens de Capital\u003cbr\u003e\u003cb\u003eBetweenness Centrality:\u003c/b\u003e 0.0000\u003cbr\u003e\u003cb\u003eComunidade:\u003c/b\u003e Ecossistema 2"}]);
+                  edges = new vis.DataSet([{"arrowStrikethrough": false, "arrows": "to", "from": "Ind\u00fastria Extrativa", "title": "Fornecimento Ind\u00fastria Extrativa \u2192 Metalurgia: Coef. 0.75", "to": "Metalurgia", "value": 2.25}, {"arrowStrikethrough": false, "arrows": "to", "from": "Ind\u00fastria Extrativa", "title": "Fornecimento Ind\u00fastria Extrativa \u2192 Qu\u00edmica e Farmac\u00eautica: Coef. 0.60", "to": "Qu\u00edmica e Farmac\u00eautica", "value": 1.7999999999999998}, {"arrowStrikethrough": false, "arrows": "to", "from": "Alimentos e Bebidas", "title": "Fornecimento Alimentos e Bebidas \u2192 T\u00eaxtil e Confec\u00e7\u00e3o: Coef. 0.20", "to": "T\u00eaxtil e Confec\u00e7\u00e3o", "value": 0.6000000000000001}, {"arrowStrikethrough": false, "arrows": "to", "from": "Celulose e Papel", "title": "Fornecimento Celulose e Papel \u2192 Alimentos e Bebidas: Coef. 0.40", "to": "Alimentos e Bebidas", "value": 1.2000000000000002}, {"arrowStrikethrough": false, "arrows": "to", "from": "Celulose e Papel", "title": "Fornecimento Celulose e Papel \u2192 Qu\u00edmica e Farmac\u00eautica: Coef. 0.35", "to": "Qu\u00edmica e Farmac\u00eautica", "value": 1.0499999999999998}, {"arrowStrikethrough": false, "arrows": "to", "from": "Qu\u00edmica e Farmac\u00eautica", "title": "Fornecimento Qu\u00edmica e Farmac\u00eautica \u2192 Alimentos e Bebidas: Coef. 0.45", "to": "Alimentos e Bebidas", "value": 1.35}, {"arrowStrikethrough": false, "arrows": "to", "from": "Qu\u00edmica e Farmac\u00eautica", "title": "Fornecimento Qu\u00edmica e Farmac\u00eautica \u2192 T\u00eaxtil e Confec\u00e7\u00e3o: Coef. 0.50", "to": "T\u00eaxtil e Confec\u00e7\u00e3o", "value": 1.5}, {"arrowStrikethrough": false, "arrows": "to", "from": "Qu\u00edmica e Farmac\u00eautica", "title": "Fornecimento Qu\u00edmica e Farmac\u00eautica \u2192 Automotiva e Equipamentos: Coef. 0.55", "to": "Automotiva e Equipamentos", "value": 1.6500000000000001}, {"arrowStrikethrough": false, "arrows": "to", "from": "Qu\u00edmica e Farmac\u00eautica", "title": "Fornecimento Qu\u00edmica e Farmac\u00eautica \u2192 Celulose e Papel: Coef. 0.40", "to": "Celulose e Papel", "value": 1.2000000000000002}, {"arrowStrikethrough": false, "arrows": "to", "from": "Metalurgia", "title": "Fornecimento Metalurgia \u2192 Automotiva e Equipamentos: Coef. 0.85", "to": "Automotiva e Equipamentos", "value": 2.55}, {"arrowStrikethrough": false, "arrows": "to", "from": "Metalurgia", "title": "Fornecimento Metalurgia \u2192 M\u00e1quinas e Aparelhos El\u00e9tricos: Coef. 0.80", "to": "M\u00e1quinas e Aparelhos El\u00e9tricos", "value": 2.4000000000000004}, {"arrowStrikethrough": false, "arrows": "to", "from": "Automotiva e Equipamentos", "title": "Fornecimento Automotiva e Equipamentos \u2192 Alimentos e Bebidas: Coef. 0.30", "to": "Alimentos e Bebidas", "value": 0.8999999999999999}, {"arrowStrikethrough": false, "arrows": "to", "from": "M\u00e1quinas e Aparelhos El\u00e9tricos", "title": "Fornecimento M\u00e1quinas e Aparelhos El\u00e9tricos \u2192 Automotiva e Equipamentos: Coef. 0.70", "to": "Automotiva e Equipamentos", "value": 2.0999999999999996}, {"arrowStrikethrough": false, "arrows": "to", "from": "M\u00e1quinas e Aparelhos El\u00e9tricos", "title": "Fornecimento M\u00e1quinas e Aparelhos El\u00e9tricos \u2192 Metalurgia: Coef. 0.40", "to": "Metalurgia", "value": 1.2000000000000002}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"barnesHut": {"gravitationalConstant": -3000, "centralGravity": 0.3, "springLength": 120}}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
