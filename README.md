@@ -11,7 +11,7 @@ Utilizando dados de alta fidelidade (simulando integração entre RAIS, PIA-IBGE
 
 ---
 
-## 🏛️ Arquitetura Analítica em 3 Camadas
+## ️ Arquitetura Analítica em 3 Camadas
 
 ```mermaid
 graph TD
@@ -38,7 +38,7 @@ graph TD
 
 ---
 
-## 🖼️ Showcase de Resultados Visuais
+## ️ Showcase de Resultados Visuais
 
 | Econometria Espacial (LISA Map) | Grafo de Encadeamento Produtivo |
 | :---: | :---: |
