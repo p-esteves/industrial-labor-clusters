@@ -151,7 +151,7 @@ Ao finalizar a execução, abra o arquivo `results/figures/industrial_network_gr
 Este repositório está sob a licença [MIT](LICENSE). Desenvolvido por Pietro Esteves como projeto de portfólio em Inteligência Territorial, Econometria Espacial e Ciência de Dados Aplicada à Economia Industrial.
 ---
 
-## Limitações Metodológicas e Trabalhos Futuros
+## Limitações Metodológicas e Melhorias Futuras
 
 - **Matriz de Pesos Espaciais (W)**: A matriz W utiliza contiguidade k-NN geométrica. Em extensões futuras, a matriz pode incorporar custos de frete rodoviário e matrizes de fluxo de transporte intermunicipal.
 - **Problema da Unidade Área Modificável (MAUP)**: Os resultados de autocorrelação espacial (I de Moran) dependem da escala de agregação. Recomenda-se testar a estabilidade dos clusters em múltiplos níveis de granularidade (município, microrregião e mesorregião).
